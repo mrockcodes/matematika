@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class PrimeNumberList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number (x) to find prime numbers up to x: ");
+        int x = scanner.nextInt();
+        
+        System.out.println("Prime numbers from 2 to " + x + ":");
+        listPrimes(x);
+        
+        scanner.close();
+    }
+    
+    public static void listPrimes(int x) {
+        for (int num = 2; num <= x; num++) {
+            if (isPrime(num)) {
+                System.out.print(num + " ");
+            }
+        }
+        System.out.println();
+    }
+    
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        }
+        if (n <= 3) {
+            return true;
+        }
+        
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+        
+        for (int i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
